@@ -29,7 +29,7 @@ public Plugin myinfo =
 public void OnPluginStart()
 {
 	RegConsoleCmd("sm_valve", Command_OpenMenu, "opens the menu that show valve items");
-	RegConsoleCmd("buyammo2", Command_OpenMenu, "opens the menu depends on players team/rank");
+	RegConsoleCmd("buyammo1", Command_OpenMenu, "opens the menu depends on players team/rank");
 }
 
 public Action Command_OpenMenu(int client, int args)
