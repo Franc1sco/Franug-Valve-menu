@@ -44,8 +44,10 @@ public Action Command_OpenMenu(int client, int args)
 	if(CommandExists("sm_mm"))menu.AddItem("mm", "Elo Ranks");
 	if(CommandExists("sm_coin"))menu.AddItem("coin", "Coins");
 	if(CommandExists("sm_profile"))menu.AddItem("profile", "Profile ranks");
-	if(FindConVar("sm_franugvalvesprays_version") != null)menu.AddItem("sprays", "Sprays");
+	if(FindConVar("sm_franugvalvesprays_version") != null)menu.AddItem("sprays", "Valve Sprays");
 	
+	
+	SetMenuPagination(menu, MENU_NO_PAGINATION);
 	menu.ExitButton = true;
 	menu.Display(client, MENU_TIME_FOREVER);
 }
