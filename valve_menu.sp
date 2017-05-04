@@ -29,6 +29,7 @@ public Plugin myinfo =
 public void OnPluginStart()
 {
 	RegConsoleCmd("sm_valve", Command_OpenMenu, "opens the menu that show valve items");
+	RegConsoleCmd("buyammo2", Command_OpenMenu, "opens the menu depends on players team/rank");
 }
 
 public Action Command_OpenMenu(int client, int args)
@@ -37,12 +38,13 @@ public Action Command_OpenMenu(int client, int args)
 	menu.SetTitle("Menu with all the valve items");
 	
 	if(CommandExists("sm_ws"))menu.AddItem("ws", "Weapon Paints");
-	if(CommandExists("sm_knife"))menu.AddItem("knive", "Valve knives");
+	if(CommandExists("sm_knife"))menu.AddItem("knife", "Valve knives");
+	if(CommandExists("sm_gloves"))menu.AddItem("gloves", "Valve Gloves");
 	if(CommandExists("sm_music"))menu.AddItem("music", "Valve music kits");
 	if(CommandExists("sm_mm"))menu.AddItem("mm", "Elo Ranks");
 	if(CommandExists("sm_coin"))menu.AddItem("coin", "Coins");
 	if(CommandExists("sm_profile"))menu.AddItem("profile", "Profile ranks");
-	if(CommandExists("sm_sprays"))menu.AddItem("sprays", "Sprays");
+	if(FindConVar("sm_franugvalvesprays_version") != null)menu.AddItem("sprays", "Sprays");
 	
 	menu.ExitButton = true;
 	menu.Display(client, MENU_TIME_FOREVER);
@@ -56,6 +58,7 @@ public int Menu_select(Menu menu, MenuAction action, int client, int param)
 		menu.GetItem(param, selection, sizeof(selection));
 		
 		if (StrEqual(selection, "ws"))FakeClientCommand(client, "sm_ws");
+		else if (StrEqual(selection, "gloves"))FakeClientCommand(client, "sm_gloves");
 		else if (StrEqual(selection, "knife"))FakeClientCommand(client, "sm_knife");
 		else if (StrEqual(selection, "music"))FakeClientCommand(client, "sm_music");
 		else if (StrEqual(selection, "sprays"))FakeClientCommand(client, "sm_sprays");
